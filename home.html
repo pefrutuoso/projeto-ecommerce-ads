@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - A sua loja de eletrônicos</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./scripts/script.js" defer></script>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-container">
+            <h1>TechStore</h1>
+            
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <!-- Campo de Busca -->
+            <div class="busca-container">
+                <input type="text" id="campo-busca" placeholder="Buscar produtos..." aria-label="Buscar produtos">
+            </div>
+            
+            <div class="acoes-header">
+                <button id="btn-tema" aria-label="Alternar tema">🌙 Modo Escuro</button>
+                <div class="carrinho" aria-label="Itens no carrinho">
+                    🛒 Carrinho: <span id="contador-carrinho">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main id="inicio">
+        <section id="produtos" class="container">
+            <h2 class="section-title">Nossos Produtos em Destaque</h2>
+            
+            <div class="grid-produtos">
+                
+                <article class="produto">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80" alt="Fone de ouvido sem fio preto no fundo amarelo">
+                    <div class="produto-info">
+                        <h3>Fone Sem Fio Pro</h3>
+                        <p>Som de alta qualidade com cancelamento de ruído ativo e bateria para o dia todo.</p>
+                        <span class="preco">R$ 299,90</span>
+                        <button class="btn-comprar" aria-label="Comprar Fone Sem Fio Pro">Adicionar ao carrinho</button>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80" alt="Relógio inteligente (Smartwatch) com pulseira cinza">
+                    <div class="produto-info">
+                        <h3>Smartwatch Fit</h3>
+                        <p>Monitore sua saúde, batimentos cardíacos e acompanhe seus treinos diários.</p>
+                        <span class="preco">R$ 189,50</span>
+                        <button class="btn-comprar" aria-label="Comprar Smartwatch Fit">Adicionar ao carrinho</button>
+                    </div>
+                </article>
+
+                <article class="produto">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&q=80" alt="Câmera fotográfica estilo Polaroid vintage">
+                    <div class="produto-info">
+                        <h3>Câmera Vintage</h3>
+                        <p>Capture momentos inesquecíveis com estilo e impressão instantânea das fotos.</p>
+                        <span class="preco">R$ 450,00</span>
+                        <button class="btn-comprar" aria-label="Comprar Câmera Vintage">Adicionar ao carrinho</button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer id="contato">
+        <div class="container">
+            <p>&copy; 2026 TechStore. Todos os direitos reservados.</p>
+            <p>Atendimento: contato@techstore.com.br</p>
+        </div>
+    </footer>
+
+</body>
+</html>
