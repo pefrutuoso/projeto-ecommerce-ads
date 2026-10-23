@@ -1,4 +1,4 @@
-# TechStore - Landing Page de E-commerce
+# TechStore - Atividades 2 e 3
 
 Este é um projeto front-end de uma página inicial de e-commerce, desenvolvido como parte das **Atividades 2 e 3** do curso de ADS. O objetivo do projeto é aplicar conceitos práticos de marcação semântica, estilização responsiva e interatividade no lado do cliente.
 
