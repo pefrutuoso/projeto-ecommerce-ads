@@ -1,34 +1,51 @@
-# TechStore - Atividades 2 e 3
+# TechStore
 
-Este é um projeto front-end de uma página inicial de e-commerce, desenvolvido como parte das **Atividades 2 e 3** do curso de ADS. O objetivo do projeto é aplicar conceitos práticos de marcação semântica, estilização responsiva e interatividade no lado do cliente.
+Projeto de e-commerce front-end desenvolvido para a disciplina de Modern Web.
+
+A página carrega produtos dinamicamente pela **Fake Store API** e permite buscar produtos, adicionar itens ao carrinho, alterar quantidades, remover produtos e calcular o valor total.
 
 ## Funcionalidades
 
-A página conta com as seguintes interações e recursos:
+- Produtos carregados pela Fake Store API
+- Busca em tempo real
+- Mensagem quando nenhum produto é encontrado
+- Carrinho com lista de itens, quantidades e valor total
+- Remoção de produtos do carrinho
+- Tema claro e escuro
+- Carrinho e tema salvos no `localStorage`
+- Notificações visuais no lugar de `alert()`
+- Layout responsivo
 
-- **Design Responsivo:** Layout adaptável para dispositivos móveis e desktops usando CSS Grid e Media Queries.
-- **Modo Claro/Escuro (Dark Mode):** Alternância de tema com JavaScript, utilizando manipulação de variáveis CSS (`:root`) para transição suave de cores.
-- **Busca em Tempo Real:** Campo de pesquisa no cabeçalho que filtra os produtos na tela instantaneamente conforme o usuário digita.
-- **Carrinho de Compras Interativo:** Botões de "Comprar" que identificam o nome do produto clicado, exibem um alerta de confirmação customizado e atualizam o contador do carrinho no cabeçalho.
-- **HTML Semântico:** Estruturação correta com `<header>`, `<main>`, `<section>`, `<article>`, `<nav>` e `<footer>` focando em acessibilidade e SEO.
+## Tecnologias
 
-## Tecnologias Utilizadas
+- HTML5
+- CSS3
+- JavaScript
+- Fake Store API
 
-Este projeto foi construído utilizando apenas tecnologias nativas, sem o uso de bibliotecas ou frameworks externos:
+## Estrutura
 
-- **HTML5:** Estrutura e semântica.
-- **CSS3:** Estilização, variáveis globais e responsividade.
-- **JavaScript (ES6):** Manipulação do DOM e eventos de interatividade.
+```text
+projeto-ecommerce-ads/
+│
+├── index.html
+├── style/
+│   └── style.css
+└── scripts/
+    └── script.js
+```
 
-## Estrutura de Arquivos
+## Como executar
 
-- `home.html` — Estrutura da página e conteúdo.
-- `style.css` — Regras de estilo, variáveis de cores e responsividade.
-- `script.js` — Lógica de interatividade (Filtro, Tema e Carrinho).
-- `README.md` — Documentação do projeto.
+1. Baixe ou clone o projeto.
+2. Abra o arquivo `index.html` no navegador.
+3. É necessário ter conexão com a internet para carregar os produtos da API.
+
+## API utilizada
+
+[https://fakestoreapi.com/products](https://fakestoreapi.com/products)
 
 ## Autor
 
-**[Pedro]**
-**[https://github.com/pefrutuoso]**
-Projeto desenvolvido para fins educacionais.
+Pedro Frutuoso  
+[https://github.com/pefrutuoso](https://github.com/pefrutuoso)
