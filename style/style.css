@@ -233,3 +233,218 @@ footer {
         margin: 0.5rem 0;
     }
 }
+/* =========================================================
+   AJUSTE DA GRADE DE PRODUTOS
+   Corrige rolagem horizontal em telas muito estreitas.
+   ========================================================= */
+
+.grid-produtos {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+
+/* =========================================================
+   MENSAGEM DE STATUS
+   ========================================================= */
+
+#mensagem-status {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+.status-erro {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   NOTIFICAÇÃO VISUAL
+   Substitui o alert() por uma mensagem integrada à página.
+   ========================================================= */
+
+.notificacao {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+
+    padding: 12px 20px;
+    border-radius: 10px;
+    background-color: #16a34a;
+    color: #ffffff;
+    font-weight: 600;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.notificacao-visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.notificacao-erro {
+    background-color: #dc2626;
+}
+
+
+/* =========================================================
+   BOTÃO DO CARRINHO NO HEADER
+   ========================================================= */
+
+.btn-carrinho {
+    background-color: var(--cor-destaque);
+    color: var(--cor-botao-texto);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-carrinho:hover {
+    background-color: var(--cor-destaque-hover);
+}
+
+
+/* =========================================================
+   CARRINHO LATERAL
+   ========================================================= */
+
+.carrinho {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 380px;
+    height: 100vh;
+    z-index: 999;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+
+    background-color: var(--bg-card);
+    color: var(--texto-principal);
+    border-left: 1px solid var(--borda-card);
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.2);
+
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+}
+
+.carrinho-aberto {
+    transform: translateX(0);
+}
+
+.carrinho-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    background-color: var(--cor-destaque-hover);
+    padding: 20px;
+    border-radius: 7px 7px 7px 7px;
+}
+
+.btn-fechar-carrinho {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: white;
+}
+
+.lista-carrinho {
+    list-style: none;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--borda-card);
+}
+
+.item-carrinho img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.item-carrinho-info {
+    flex-grow: 1;
+}
+
+.item-carrinho-nome {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.item-carrinho-preco {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.item-carrinho-controles {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-carrinho-controles button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--cor-destaque);
+    color: var(--cor-botao-texto);
+}
+
+.carrinho-vazio {
+    text-align: center;
+    color: #64748b;
+}
+
+.carrinho-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    padding-top: 16px;
+    border-top: 1px solid var(--borda-card);
+}
+
+.btn-finalizar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #16a34a;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .carrinho {
+        max-width: 100%;
+    }
+}

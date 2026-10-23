@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore</title>
+
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./scripts/script.js" defer></script>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-container">
+            <h1>TechStore</h1>
+
+            <nav aria-label="Navegação principal">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="busca-container">
+                <input
+                    type="text"
+                    id="campo-busca"
+                    placeholder="Buscar produtos..."
+                    aria-label="Buscar produtos"
+                >
+            </div>
+
+            <div class="acoes-header">
+                <button id="btn-tema" aria-label="Alternar tema">
+                    🌙 Modo Escuro
+                </button>
+
+                <button
+                    id="btn-carrinho"
+                    class="btn-carrinho"
+                    aria-label="Abrir carrinho"
+                >
+                    🛒 Carrinho:
+                    <span id="contador-carrinho">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notificação visual -->
+    <div id="notificacao" class="notificacao" role="status" aria-live="polite"></div>
+
+    <!-- Conteúdo principal -->
+    <main id="inicio">
+        <section id="produtos" class="container">
+            <h2 class="section-title">Nossos Produtos em Destaque</h2>
+
+            <p id="mensagem-status">Carregando produtos...</p>
+
+            <div class="grid-produtos" id="grid-produtos">
+                <!-- Produtos carregados pela Fake Store API -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Carrinho lateral -->
+    <aside id="carrinho" class="carrinho" aria-hidden="true">
+        <div class="carrinho-cabecalho">
+            <h2>Seu carrinho</h2>
+
+            <button
+                id="btn-fechar-carrinho"
+                class="btn-fechar-carrinho"
+                aria-label="Fechar carrinho"
+            >
+                ✕
+            </button>
+        </div>
+
+        <ul id="lista-carrinho" class="lista-carrinho"></ul>
+
+        <p id="carrinho-vazio" class="carrinho-vazio">
+            Seu carrinho está vazio.
+        </p>
+
+        <div class="carrinho-total">
+            <strong>Total:</strong>
+            <span id="valor-total">R$ 0,00</span>
+        </div>
+
+        <button id="btn-finalizar" class="btn-finalizar">
+            Finalizar compra
+        </button>
+    </aside>
+
+    <!-- Rodapé -->
+    <footer id="contato">
+        <div class="container">
+            <p>&copy; 2026 TechStore. Todos os direitos reservados.</p>
+            <p>Atendimento: contato@techstore.com.br</p>
+        </div>
+    </footer>
+
+</body>
+</html>
