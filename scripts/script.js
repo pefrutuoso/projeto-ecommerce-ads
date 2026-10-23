@@ -1,6 +1,6 @@
-// =========================================================
-// 1. CONSTANTES E ELEMENTOS
-// =========================================================
+/* =========================================================
+   1. ELEMENTS AND CONSTANTS
+   ========================================================= */
 
 const URL_API = "https://fakestoreapi.com/products";
 
@@ -14,7 +14,6 @@ const body = document.body;
 const btnCarrinho = document.getElementById("btn-carrinho");
 const btnFecharCarrinho = document.getElementById("btn-fechar-carrinho");
 const carrinho = document.getElementById("carrinho");
-
 const listaCarrinho = document.getElementById("lista-carrinho");
 const carrinhoVazio = document.getElementById("carrinho-vazio");
 const contadorCarrinho = document.getElementById("contador-carrinho");
@@ -27,10 +26,15 @@ let produtosCarregados = [];
 let carrinhoItens = [];
 
 
-// =========================================================
-// 2. FUNÇÕES AUXILIARES
-// =========================================================
+/* =========================================================
+   2. HELPER FUNCTIONS
+   ========================================================= */
 
+/**
+ * Formata um número para moeda brasileira.
+ * @param {number} valor - Valor a ser formatado.
+ * @returns {string} Valor no formato R$ 0,00.
+ */
 function formatarPreco(valor) {
     return valor.toLocaleString("pt-BR", {
         style: "currency",
@@ -39,45 +43,66 @@ function formatarPreco(valor) {
 }
 
 
+/**
+ * Exibe uma notificação visual temporária.
+ * Substitui o uso de alert().
+ * @param {string} texto - Mensagem exibida.
+ * @param {boolean} ehErro - Define se a notificação é de erro.
+ */
 function exibirNotificacao(texto, ehErro = false) {
     notificacao.textContent = texto;
 
-    notificacao.classList.add("notificacao-visivel");
+    notificacao.classList.add("notificacao--visivel");
 
     if (ehErro) {
-        notificacao.classList.add("notificacao-erro");
+        notificacao.classList.add("notificacao--erro");
     } else {
-        notificacao.classList.remove("notificacao-erro");
+        notificacao.classList.remove("notificacao--erro");
     }
 
     setTimeout(function () {
-        notificacao.classList.remove("notificacao-visivel");
+        notificacao.classList.remove("notificacao--visivel");
     }, 2500);
 }
 
 
+/**
+ * Exibe uma mensagem de status abaixo do título.
+ * @param {string} texto - Mensagem exibida.
+ * @param {boolean} ehErro - Define se é mensagem de erro.
+ */
 function exibirStatus(texto, ehErro = false) {
     mensagemStatus.textContent = texto;
-    mensagemStatus.classList.toggle("status-erro", ehErro);
+    mensagemStatus.classList.toggle("mensagem-status--erro", ehErro);
 }
 
 
-// =========================================================
-// 3. LOCALSTORAGE
-// =========================================================
+/* =========================================================
+   3. LOCALSTORAGE
+   ========================================================= */
 
-function salvarCarrinho() {
-    localStorage.setItem("carrinho", JSON.stringify(carrinhoItens));
-}
-
-
-function recuperarCarrinho() {
+/**
+ * Recupera o carrinho salvo no navegador.
+ * @returns {Array} Lista de itens do carrinho.
+ */
+function recuperarCarrinhoSalvo() {
     const carrinhoSalvo = localStorage.getItem("carrinho");
 
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
 }
 
 
+/**
+ * Salva o carrinho atual no navegador.
+ */
+function salvarCarrinho() {
+    localStorage.setItem("carrinho", JSON.stringify(carrinhoItens));
+}
+
+
+/**
+ * Salva o tema escolhido pelo usuário.
+ */
 function salvarTema() {
     const temaAtual = body.classList.contains("dark-mode")
         ? "escuro"
@@ -87,6 +112,9 @@ function salvarTema() {
 }
 
 
+/**
+ * Aplica o tema salvo ao carregar a página.
+ */
 function aplicarTemaSalvo() {
     const temaSalvo = localStorage.getItem("tema");
 
@@ -97,9 +125,9 @@ function aplicarTemaSalvo() {
 }
 
 
-// =========================================================
-// 4. TEMA CLARO E ESCURO
-// =========================================================
+/* =========================================================
+   4. DARK MODE
+   ========================================================= */
 
 btnTema.addEventListener("click", function () {
     body.classList.toggle("dark-mode");
@@ -114,10 +142,13 @@ btnTema.addEventListener("click", function () {
 });
 
 
-// =========================================================
-// 5. FAKE STORE API
-// =========================================================
+/* =========================================================
+   5. FAKE STORE API
+   ========================================================= */
 
+/**
+ * Busca os produtos na Fake Store API e renderiza na página.
+ */
 async function carregarProdutos() {
     try {
         const resposta = await fetch(URL_API);
@@ -129,11 +160,12 @@ async function carregarProdutos() {
         produtosCarregados = await resposta.json();
 
         gridProdutos.innerHTML = "";
-        mensagemStatus.style.display = "none";
 
         produtosCarregados.forEach(function (produto) {
             gridProdutos.appendChild(criarCardProduto(produto));
         });
+
+        exibirStatus(`${produtosCarregados.length} produtos carregados.`);
 
     } catch (erro) {
         console.error("Erro ao carregar produtos:", erro);
@@ -146,10 +178,14 @@ async function carregarProdutos() {
 }
 
 
+/**
+ * Cria o card visual de um produto.
+ * @param {Object} produto - Produto retornado pela API.
+ * @returns {HTMLElement} Elemento article do produto.
+ */
 function criarCardProduto(produto) {
     const artigo = document.createElement("article");
     artigo.className = "produto";
-    artigo.dataset.id = produto.id;
 
     const imagem = document.createElement("img");
     imagem.src = produto.image;
@@ -162,8 +198,8 @@ function criarCardProduto(produto) {
     const titulo = document.createElement("h3");
     titulo.textContent = produto.title;
 
-    const descricao = document.createElement("p");
-    descricao.textContent = produto.description;
+    const categoria = document.createElement("p");
+    categoria.textContent = produto.category;
 
     const preco = document.createElement("span");
     preco.className = "preco";
@@ -172,31 +208,29 @@ function criarCardProduto(produto) {
     const botaoComprar = document.createElement("button");
     botaoComprar.className = "btn-comprar";
     botaoComprar.textContent = "Adicionar ao carrinho";
-    botaoComprar.setAttribute("aria-label", `Comprar ${produto.title}`);
+    botaoComprar.setAttribute("aria-label", `Adicionar ${produto.title} ao carrinho`);
 
     botaoComprar.addEventListener("click", function () {
         adicionarAoCarrinho(produto);
     });
 
-    info.append(titulo, descricao, preco, botaoComprar);
+    info.append(titulo, categoria, preco, botaoComprar);
     artigo.append(imagem, info);
 
     return artigo;
 }
 
 
-// =========================================================
-// 6. BUSCA
-// =========================================================
+/* =========================================================
+   6. SEARCH FILTER
+   ========================================================= */
 
 campoBusca.addEventListener("input", function () {
     const textoBuscado = campoBusca.value.trim().toLowerCase();
 
     let produtosVisiveis = 0;
 
-    const produtos = document.querySelectorAll(".produto");
-
-    produtos.forEach(function (produto) {
+    document.querySelectorAll(".produto").forEach(function (produto) {
         const nomeProduto = produto
             .querySelector("h3")
             .textContent
@@ -213,16 +247,22 @@ campoBusca.addEventListener("input", function () {
 
     if (produtosVisiveis === 0) {
         exibirStatus("Nenhum produto encontrado para a busca.");
+    } else if (textoBuscado === "") {
+        exibirStatus(`${produtosCarregados.length} produtos carregados.`);
     } else {
-        mensagemStatus.style.display = "none";
+        exibirStatus(`${produtosVisiveis} produto(s) encontrado(s).`);
     }
 });
 
 
-// =========================================================
-// 7. CARRINHO
-// =========================================================
+/* =========================================================
+   7. SHOPPING CART
+   ========================================================= */
 
+/**
+ * Adiciona um produto ao carrinho ou aumenta sua quantidade.
+ * @param {Object} produto - Produto selecionado.
+ */
 function adicionarAoCarrinho(produto) {
     const itemExistente = carrinhoItens.find(function (item) {
         return item.id === produto.id;
@@ -247,6 +287,11 @@ function adicionarAoCarrinho(produto) {
 }
 
 
+/**
+ * Altera a quantidade de um item do carrinho.
+ * @param {number} id - ID do produto.
+ * @param {number} delta - 1 para aumentar ou -1 para diminuir.
+ */
 function alterarQuantidade(id, delta) {
     const item = carrinhoItens.find(function (item) {
         return item.id === id;
@@ -266,6 +311,10 @@ function alterarQuantidade(id, delta) {
 }
 
 
+/**
+ * Remove um item do carrinho.
+ * @param {number} id - ID do produto.
+ */
 function removerDoCarrinho(id) {
     carrinhoItens = carrinhoItens.filter(function (item) {
         return item.id !== id;
@@ -278,13 +327,10 @@ function removerDoCarrinho(id) {
 }
 
 
-function calcularQuantidadeTotal() {
-    return carrinhoItens.reduce(function (total, item) {
-        return total + item.quantidade;
-    }, 0);
-}
-
-
+/**
+ * Calcula o valor total do carrinho.
+ * @returns {number} Valor total.
+ */
 function calcularValorTotal() {
     return carrinhoItens.reduce(function (total, item) {
         return total + item.preco * item.quantidade;
@@ -292,6 +338,22 @@ function calcularValorTotal() {
 }
 
 
+/**
+ * Calcula a quantidade total de produtos no carrinho.
+ * @returns {number} Quantidade total.
+ */
+function calcularQuantidadeTotal() {
+    return carrinhoItens.reduce(function (total, item) {
+        return total + item.quantidade;
+    }, 0);
+}
+
+
+/**
+ * Cria o item visual do carrinho.
+ * @param {Object} item - Item do carrinho.
+ * @returns {HTMLElement} Elemento li do carrinho.
+ */
 function criarItemCarrinho(item) {
     const li = document.createElement("li");
     li.className = "item-carrinho";
@@ -329,7 +391,7 @@ function criarItemCarrinho(item) {
 
     const botaoRemover = document.createElement("button");
     botaoRemover.textContent = "🗑";
-    botaoRemover.setAttribute("aria-label", "Remover produto");
+    botaoRemover.setAttribute("aria-label", "Remover produto do carrinho");
 
     botaoDiminuir.addEventListener("click", function () {
         alterarQuantidade(item.id, -1);
@@ -343,19 +405,16 @@ function criarItemCarrinho(item) {
         removerDoCarrinho(item.id);
     });
 
-    controles.append(
-        botaoDiminuir,
-        quantidade,
-        botaoAumentar,
-        botaoRemover
-    );
-
+    controles.append(botaoDiminuir, quantidade, botaoAumentar, botaoRemover);
     li.append(imagem, info, controles);
 
     return li;
 }
 
 
+/**
+ * Atualiza a interface do carrinho, contador e valor total.
+ */
 function atualizarCarrinho() {
     listaCarrinho.innerHTML = "";
 
@@ -372,10 +431,13 @@ function atualizarCarrinho() {
 }
 
 
+/**
+ * Abre ou fecha o carrinho lateral.
+ */
 function alternarCarrinho() {
-    const estaAberto = carrinho.classList.contains("carrinho-aberto");
+    const estaAberto = carrinho.classList.contains("carrinho--aberto");
 
-    carrinho.classList.toggle("carrinho-aberto");
+    carrinho.classList.toggle("carrinho--aberto");
     carrinho.setAttribute("aria-hidden", estaAberto);
 }
 
@@ -399,11 +461,11 @@ btnFinalizar.addEventListener("click", function () {
 });
 
 
-// =========================================================
-// 8. INICIALIZAÇÃO
-// =========================================================
+/* =========================================================
+   8. INITIALIZATION
+   ========================================================= */
 
-carrinhoItens = recuperarCarrinho();
 aplicarTemaSalvo();
+carrinhoItens = recuperarCarrinhoSalvo();
 atualizarCarrinho();
 carregarProdutos();
