@@ -254,8 +254,6 @@ body {
     font-weight: 700;
 }
 
-/* A largura mínima foi reduzida para evitar rolagem horizontal
-   em telas muito estreitas. */
 .grid-produtos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));

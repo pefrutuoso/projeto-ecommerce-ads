@@ -1,5 +1,5 @@
 /* =========================================================
-   1. ELEMENTS AND CONSTANTS
+   1. ELEMENTOS E CONSTANTES
    ========================================================= */
 
 const URL_API = "https://fakestoreapi.com/products";
@@ -27,7 +27,7 @@ let carrinhoItens = [];
 
 
 /* =========================================================
-   2. HELPER FUNCTIONS
+   2. FUNÇÕES DE AJUDA
    ========================================================= */
 
 /**
@@ -126,7 +126,7 @@ function aplicarTemaSalvo() {
 
 
 /* =========================================================
-   4. DARK MODE
+   4. TEMA ESCURO
    ========================================================= */
 
 btnTema.addEventListener("click", function () {
@@ -222,7 +222,7 @@ function criarCardProduto(produto) {
 
 
 /* =========================================================
-   6. SEARCH FILTER
+   6. FILTRO DE BUSCA
    ========================================================= */
 
 campoBusca.addEventListener("input", function () {
@@ -256,7 +256,7 @@ campoBusca.addEventListener("input", function () {
 
 
 /* =========================================================
-   7. SHOPPING CART
+   7. CARRINHO DE COMPRAS
    ========================================================= */
 
 /**
@@ -462,7 +462,7 @@ btnFinalizar.addEventListener("click", function () {
 
 
 /* =========================================================
-   8. INITIALIZATION
+   8. INICIALIZAÇÃO
    ========================================================= */
 
 aplicarTemaSalvo();
